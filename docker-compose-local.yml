@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+    mysql:
+        image: mysql:8.0.35
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        expose:
+            - "3306"
+        ports:
+            - "3306:3306"
+        volumes:
+            - mysql-volume:/var/lib/mysql
+
+volumes:
+    mysql-volume:
