@@ -33,6 +33,14 @@ subprojects {
         useJUnitPlatform()
     }
 
+    afterEvaluate {
+        if (name != "common") {
+            dependencies {
+                implementation(project(":common"))
+            }
+        }
+    }
+
     // 공통 의존성
     dependencies {
         testImplementation("org.jetbrains.kotlin:kotlin-test-junit5:1.9.25")
