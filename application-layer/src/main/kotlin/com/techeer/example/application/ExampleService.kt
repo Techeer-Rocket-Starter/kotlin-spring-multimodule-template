@@ -6,7 +6,7 @@ import com.techeer.example.application.dto.response.ExampleDetailResponse
 import com.techeer.example.common.error.BusinessException
 import com.techeer.example.domain.example.Example
 import com.techeer.example.domain.example.ExampleRepository
-import com.techeer.example.domain.example.exception.ExampleErrorCode
+import com.techeer.example.domain.example.exception.ExampleErrorCode.NOT_FOUND
 import org.springframework.stereotype.Service
 import java.util.UUID
 
@@ -21,7 +21,7 @@ class ExampleService(
     }
 
     fun findExampleById(id: UUID): ExampleDetailResponse {
-        val example: Example = exampleRepository.findById(id) ?: throw BusinessException(ExampleErrorCode.NOT_FOUND)
+        val example: Example = exampleRepository.findById(id) ?: throw BusinessException(NOT_FOUND)
         return ExampleDetailResponse(
             id = example.id,
             name = example.name,
