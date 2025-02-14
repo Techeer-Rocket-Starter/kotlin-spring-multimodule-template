@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+    spring-boot-api:
+        build:
+            context: .
+            dockerfile: web-api.dockerfile
+        ports:
+            - "8080:8080"
+        expose:
+            - "8080"

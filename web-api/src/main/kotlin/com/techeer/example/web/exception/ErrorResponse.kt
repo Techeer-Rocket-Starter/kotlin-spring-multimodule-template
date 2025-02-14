@@ -1,0 +1,15 @@
+package com.techeer.example.web.exception
+
+import com.techeer.example.common.error.ErrorCode
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
+
+class ErrorResponse(
+    errorCode: ErrorCode,
+    httpStatus: HttpStatus,
+) : ResponseEntity<ErrorResponse.Body>(Body(errorCode.code, errorCode.message), httpStatus) {
+    data class Body(
+        val code: String,
+        val message: String,
+    )
+}
