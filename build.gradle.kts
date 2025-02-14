@@ -6,6 +6,12 @@ plugins {
     id("io.spring.dependency-management") version "1.1.7" apply false
 
     id("org.jlleitschuh.gradle.ktlint") version "12.1.2"
+    id("jacoco")
+    id("jacoco-report-aggregation")
+}
+
+dependencies {
+    jacocoAggregation(project(":domain-layer:example-context"))
 }
 
 allprojects {
@@ -20,6 +26,7 @@ allprojects {
 subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply(plugin = "org.jlleitschuh.gradle.ktlint")
+    apply(plugin = "jacoco")
 
     kotlin {
         compilerOptions {
@@ -35,6 +42,16 @@ subprojects {
 
     tasks.withType<Test> {
         useJUnitPlatform()
+        finalizedBy(tasks.jacocoTestReport)
+    }
+
+    tasks.jacocoTestReport {
+        dependsOn(tasks.test)
+        reports {
+            html.required.set(true)
+            xml.required.set(true)
+            csv.required.set(false)
+        }
     }
 
     afterEvaluate {
