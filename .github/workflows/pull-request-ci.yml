@@ -42,7 +42,7 @@ jobs:
             - name: ktlint 검사 실행
               run: ./gradlew ktlintCheck
 
-            - name: Gradle 빌드
+            - name: 커버리지 리포트 생성
               run: ./gradlew testCodeCoverageReport
 
             - name: 테스트 커버리지 리포트 PR Commant 추가
