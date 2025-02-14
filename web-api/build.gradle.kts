@@ -10,6 +10,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
+    // Swagger
+    implementation("org.springdoc:springdoc-openapi:2.7.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")
+
     // other modules
     implementation(project(":common"))
     implementation(project(":application-layer"))
